@@ -29,15 +29,15 @@ if (userAnswer[2] === "my-tweets") {
     ombd();
     // console.log("movie-this");
 
-} else if (userAnswer === "do-what-it-says") {
+} else if (userAnswer[2] === "do-what-it-says") {
     doTask();
 };
-console.log(userAnswer);
+// console.log(userAnswer);
 
 
 function userTweets() {
 
-    var params = { screen_name: userAnswer[3] };
+    var params = { screen_name: userAnswer[3], count: 20 };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
             if (tweets.length > 20) {
@@ -52,36 +52,16 @@ function userTweets() {
                         console.log(tweets[i].text);
                     }
             }
-
-        // } else if {
-        //     console.log("Oops! There's nothing there...")
         }
-        // console.log(tweets);
     });
 };
 
 
 function spotifyStuff () {
 
-	
+var song = userAnswer[3];
 
-	for (var i = 3; i < userAnswer.length; i++) {
-
-  if (i > 3 && i < userAnswer.length) {
-
-    song = song + "+" + userAnswer[i];
-
-  }
-
-  else {
-
-    song += userAnswer[i];
-
-  }
-}
-
-
-	spotify.search({ type: song, query: userAnswer }, function(err, data) {
+	spotify.search({ type: "track", query: song }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
@@ -94,12 +74,12 @@ function spotifyStuff () {
   	 console.log(resultsSpotify[i].album.name);
 
 
-  	 console.log("=================")
+  	 console.log("=================");
+
   }
 
- 
-// console.log(data.tracks.items[0].artists[0].name); 
 });
+
 }
 
 
@@ -144,6 +124,7 @@ request(queryUrl, function(error, response, body) {
     console.log(JSON.parse(body).Language);
     console.log(JSON.parse(body).Plot);
     console.log(JSON.parse(body).Actors);
+
   }
 
 });
@@ -151,22 +132,10 @@ request(queryUrl, function(error, response, body) {
 }
 
 function doTask() {
-	var results;
-fs.readFile('*/random.txt', function(err, data){
-  if (err) throw err;
+	// var results;
+   fs.readFile('random.txt', "utf8", function(error, data){
+    var txt = data.split(',');
 
-  results = data;
-});
-  
-  // make results a array
-  for (var i = 3; i < results.length; i++) {
-  	console.log(results[i]);
-  }
-  
-results[i] += song;
-  // assign thr song to global song veriable
-  	spotifyStuff();
+    spotifyStuff(txt[1]);
+  });
 }
-
-
-//Importing information from key.js;

@@ -44,12 +44,14 @@ function userTweets() {
                 for (var i = 0; i < 20; i++) {
                     console.log(tweets[i].created_at);
                     console.log(tweets[i].text);
+                    console.log("=========================================================");
                 }
                 }
                  else {
                     for (var i = 0; i < tweets.length; i++) {
                         console.log(tweets[i].created_at);
                         console.log(tweets[i].text);
+                        console.log("=========================================================");
                     }
             }
         }
@@ -68,10 +70,10 @@ var song = userAnswer[3];
   var resultsSpotify = data.tracks.items;
 
   for (var i = 0; i < resultsSpotify.length; i++) {
-  	 console.log(resultsSpotify[i].artists[0].name);
-  	 console.log(resultsSpotify[i].name);
-  	 console.log(resultsSpotify[i].external_urls.spotify);
-  	 console.log(resultsSpotify[i].album.name);
+  	 console.log("Artist: " + resultsSpotify[i].artists[0].name);
+  	 console.log("Song: " +resultsSpotify[i].name);
+  	 console.log("URL: " + resultsSpotify[i].external_urls.spotify);
+  	 console.log("Album: " + resultsSpotify[i].album.name);
 
 
   	 console.log("=================");
@@ -116,14 +118,21 @@ request(queryUrl, function(error, response, body) {
    // * Plot of the movie.
    // * Actors in the movie.
 
-    console.log(JSON.parse(body).Title);
-    console.log(JSON.parse(body).Year);
-    console.log(JSON.parse(body).imdbRating);
-    console.log(JSON.parse(body).Ratings[1].Value);
-    console.log(JSON.parse(body).Country);
-    console.log(JSON.parse(body).Language);
-    console.log(JSON.parse(body).Plot);
-    console.log(JSON.parse(body).Actors);
+    console.log("Title: " + JSON.parse(body).Title);
+    console.log("=========================================================");
+    console.log("Year: " + JSON.parse(body).Year);
+    console.log("=========================================================");    
+    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+    console.log("=========================================================");
+    console.log("Rotten Tomatoes: " + JSON.parse(body).Ratings[1].Value);
+    console.log("=========================================================");
+    console.log("Country: " + JSON.parse(body).Country);
+    console.log("=========================================================");
+    console.log("Language: " + JSON.parse(body).Language);
+    console.log("=========================================================");
+    console.log("Plot: " + JSON.parse(body).Plot);
+    console.log("=========================================================");
+    console.log("Actors: " + JSON.parse(body).Actors);
 
   }
 
